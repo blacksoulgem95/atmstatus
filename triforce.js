@@ -4,7 +4,13 @@ class Triforce extends HTMLElement {
     }
 
     connectedCallback() {
-        const shadowRoot = this.attachShadow({mode:'open'})
+        this.style.height = '60px';
+        this.style.width = '60px';
+        this.style.display = 'block';
+        this.style.marginTop = '20px';
+        const shadowRoot = this.attachShadow({
+            mode: 'open'
+        })
 
         shadowRoot.innerHTML = `
         <link rel="stylesheet" href="triforce.css">
