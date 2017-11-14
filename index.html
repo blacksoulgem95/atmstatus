@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="footer.css">
 </head>
 
-<body>
+<body onload="getATMData()">
   <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="#">
       <img src="assets/logo.png" width="auto" height="30" class="d-inline-block align-top" alt=""> ATM Status
@@ -19,7 +19,7 @@
     <ul class="list-group">
       <li style="background-color: red; color: white" class="list-group-item d-flex justify-content-between align-items-center">
         M1 - RHO FIERAMILANO
-        <span id="M1-RHO-text" class="badge badge-primary badge-pill">NO DATA</span>
+        <span id="M1-RHOFIERAMILANO-text" class="badge badge-primary badge-pill">NO DATA</span>
       </li>
       <li style="background-color: red; color: white" class="list-group-item d-flex justify-content-between align-items-center">
         M1 - BISCEGLIE
@@ -27,19 +27,35 @@
       </li>
       <li style="background-color: red; color: white" class="list-group-item d-flex justify-content-between align-items-center">
         M1 - SESTO F.S.
-        <span id="M1-SESTO-text" class="badge badge-primary badge-pill">NO DATA</span>
+        <span id="M1-SESTOFS-text" class="badge badge-primary badge-pill">NO DATA</span>
       </li>
       <li style="background-color: green; color white" class="list-group-item d-flex justify-content-between align-items-center">
         M2 - VERDE
-        <span id="M2-text" class="badge badge-primary badge-pill">NO DATA</span>
+        <span id="M2-COLOGNONORD-text" class="badge badge-primary badge-pill">NO DATA</span>
+      </li>
+      <li style="background-color: green; color white" class="list-group-item d-flex justify-content-between align-items-center">
+        M2 - VERDE
+        <span id="M2-ABBIATEGRASSO-text" class="badge badge-primary badge-pill">NO DATA</span>
+      </li>
+      <li style="background-color: green; color white" class="list-group-item d-flex justify-content-between align-items-center">
+        M2 - VERDE
+        <span id="M2-ASSAGOFORUM-text" class="badge badge-primary badge-pill">NO DATA</span>
       </li>
       <li style="background-color: yellow" class="list-group-item d-flex justify-content-between align-items-center">
         M3 - GIALLA
-        <span id="M3-text" class="badge badge-primary badge-pill">NO DATA</span>
+        <span id="M3-COMASINA-text" class="badge badge-primary badge-pill">NO DATA</span>
+      </li>
+      <li style="background-color: yellow" class="list-group-item d-flex justify-content-between align-items-center">
+        M3 - GIALLA
+        <span id="M3-SANDONATO-text" class="badge badge-primary badge-pill">NO DATA</span>
       </li>
       <li style="background-color: #9955bb; color: white" class="list-group-item d-flex justify-content-between align-items-center">
         M5 - LILLA
-        <span id="M5-text" class="badge badge-primary badge-pill">NO DATA</span>
+        <span id="M5-BIGNAMI-text" class="badge badge-primary badge-pill">NO DATA</span>
+      </li>
+      <li style="background-color: #9955bb; color: white" class="list-group-item d-flex justify-content-between align-items-center">
+        M5 - LILLA
+        <span id="M5-SANSIROSTADIO-text" class="badge badge-primary badge-pill">NO DATA</span>
       </li>
     </ul>
   </div>
@@ -61,7 +77,7 @@
         throw new Error(res.status);
       }).then((data) => {
         data.forEach(element => {
-          let direction = element.direction.replace(/\s/g, '')
+          let direction = element.direction.replace(/\s/g, '').replace(/\./g, '')
           document.querySelector('#' + element.line + '-' + direction + '-text').textContent = element.status;
         });
       }).catch((err) => {
