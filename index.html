@@ -92,7 +92,7 @@
         throw new Error(res.status);
       }).then((data) => {
         data.forEach(element => {
-          let direction = element.direction.replace(/\s/g, '').replace(/\./g, '')
+          let direction = element.text.replace(/\s/g, '').replace(/\./g, '')
           document.querySelector('#' + element.line + '-' + direction + '-text').textContent = element.status;
         });
       }).catch((err) => {
