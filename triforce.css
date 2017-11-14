@@ -1,0 +1,238 @@
+.cssload-triangle {
+	position: absolute;
+	left: 0;
+	right: 0;
+	width: 0px;
+	height: 0px;
+	margin: -24px auto;
+	border-left: 24px solid transparent;
+	border-right: 24px solid transparent;
+	border-bottom: 42px solid rgb(219,203,95);
+	transform-origin: 0 0;
+		-o-transform-origin: 0 0;
+		-ms-transform-origin: 0 0;
+		-webkit-transform-origin: 0 0;
+		-moz-transform-origin: 0 0;
+	transform-origin: 50% 90%;
+		-o-transform-origin: 50% 90%;
+		-ms-transform-origin: 50% 90%;
+		-webkit-transform-origin: 50% 90%;
+		-moz-transform-origin: 50% 90%;
+	animation: cssload-spin 1.15s cubic-bezier(0.56, 1.55, 0.51, 0.74) infinite;
+		-o-animation: cssload-spin 1.15s cubic-bezier(0.56, 1.55, 0.51, 0.74) infinite;
+		-ms-animation: cssload-spin 1.15s cubic-bezier(0.56, 1.55, 0.51, 0.74) infinite;
+		-webkit-animation: cssload-spin 1.15s cubic-bezier(0.56, 1.55, 0.51, 0.74) infinite;
+		-moz-animation: cssload-spin 1.15s cubic-bezier(0.56, 1.55, 0.51, 0.74) infinite;
+}
+.cssload-triangle:after, .cssload-triangle:before {
+	content: "";
+	position: absolute;
+	top: 42px;
+	width: 0;
+	height: 0;
+	border-left: 24px solid transparent;
+	border-right: 24px solid transparent;
+	border-bottom: 42px solid rgb(219,203,95);
+}
+.cssload-triangle:after {
+	left: 0px;
+	border-bottom: 42px solid rgb(219,202,95);
+	animation: cssload-shiftright 1.15s cubic-bezier(0.56, 1.55, 0.51, 0.74) infinite;
+		-o-animation: cssload-shiftright 1.15s cubic-bezier(0.56, 1.55, 0.51, 0.74) infinite;
+		-ms-animation: cssload-shiftright 1.15s cubic-bezier(0.56, 1.55, 0.51, 0.74) infinite;
+		-webkit-animation: cssload-shiftright 1.15s cubic-bezier(0.56, 1.55, 0.51, 0.74) infinite;
+		-moz-animation: cssload-shiftright 1.15s cubic-bezier(0.56, 1.55, 0.51, 0.74) infinite;
+}
+.cssload-triangle:before {
+	left: -49px;
+	border-bottom: 42px solid rgb(219,203,95);
+	animation: cssload-shiftleft 1.15s cubic-bezier(0.56, 1.55, 0.51, 0.74) infinite;
+		-o-animation: cssload-shiftleft 1.15s cubic-bezier(0.56, 1.55, 0.51, 0.74) infinite;
+		-ms-animation: cssload-shiftleft 1.15s cubic-bezier(0.56, 1.55, 0.51, 0.74) infinite;
+		-webkit-animation: cssload-shiftleft 1.15s cubic-bezier(0.56, 1.55, 0.51, 0.74) infinite;
+		-moz-animation: cssload-shiftleft 1.15s cubic-bezier(0.56, 1.55, 0.51, 0.74) infinite;
+}
+
+
+
+
+
+@keyframes cssload-spin {
+	0% {
+		transform: scale(1) translateY(0);
+	}
+	50% {
+		transform: scale(0.5) translateY(19px);
+	}
+	100% {
+		transform: scale(1) translateY(0);
+	}
+}
+
+@-o-keyframes cssload-spin {
+	0% {
+		-o-transform: scale(1) translateY(0);
+	}
+	50% {
+		-o-transform: scale(0.5) translateY(19px);
+	}
+	100% {
+		-o-transform: scale(1) translateY(0);
+	}
+}
+
+@-ms-keyframes cssload-spin {
+	0% {
+		-ms-transform: scale(1) translateY(0);
+	}
+	50% {
+		-ms-transform: scale(0.5) translateY(19px);
+	}
+	100% {
+		-ms-transform: scale(1) translateY(0);
+	}
+}
+
+@-webkit-keyframes cssload-spin {
+	0% {
+		-webkit-transform: scale(1) translateY(0);
+	}
+	50% {
+		-webkit-transform: scale(0.5) translateY(19px);
+	}
+	100% {
+		-webkit-transform: scale(1) translateY(0);
+	}
+}
+
+@-moz-keyframes cssload-spin {
+	0% {
+		-moz-transform: scale(1) translateY(0);
+	}
+	50% {
+		-moz-transform: scale(0.5) translateY(19px);
+	}
+	100% {
+		-moz-transform: scale(1) translateY(0);
+	}
+}
+
+@keyframes cssload-shiftleft {
+	0% {
+		transform: translate3drgb(0,0,0);
+	}
+	50% {
+		transform: translate3d(24px, -42px, 0);
+	}
+	100% {
+		transform: translate3drgb(0,0,0);
+	}
+}
+
+@-o-keyframes cssload-shiftleft {
+	0% {
+		-o-transform: translate3drgb(0,0,0);
+	}
+	50% {
+		-o-transform: translate3d(24px, -42px, 0);
+	}
+	100% {
+		-o-transform: translate3drgb(0,0,0);
+	}
+}
+
+@-ms-keyframes cssload-shiftleft {
+	0% {
+		-ms-transform: translate3drgb(0,0,0);
+	}
+	50% {
+		-ms-transform: translate3d(24px, -42px, 0);
+	}
+	100% {
+		-ms-transform: translate3drgb(0,0,0);
+	}
+}
+
+@-webkit-keyframes cssload-shiftleft {
+	0% {
+		-webkit-transform: translate3drgb(0,0,0);
+	}
+	50% {
+		-webkit-transform: translate3d(24px, -42px, 0);
+	}
+	100% {
+		-webkit-transform: translate3drgb(0,0,0);
+	}
+}
+
+@-moz-keyframes cssload-shiftleft {
+	0% {
+		-moz-transform: translate3drgb(0,0,0);
+	}
+	50% {
+		-moz-transform: translate3d(24px, -42px, 0);
+	}
+	100% {
+		-moz-transform: translate3drgb(0,0,0);
+	}
+}
+
+@keyframes cssload-shiftright {
+	0% {
+		transform: translate3drgb(0,0,0);
+	}
+	50% {
+		transform: translate3d(-24px, -42px, 0);
+	}
+	100% {
+		transform: translate3drgb(0,0,0);
+	}
+}
+
+@-o-keyframes cssload-shiftright {
+	0% {
+		-o-transform: translate3drgb(0,0,0);
+	}
+	50% {
+		-o-transform: translate3d(-24px, -42px, 0);
+	}
+	100% {
+		-o-transform: translate3drgb(0,0,0);
+	}
+}
+
+@-ms-keyframes cssload-shiftright {
+	0% {
+		-ms-transform: translate3drgb(0,0,0);
+	}
+	50% {
+		-ms-transform: translate3d(-24px, -42px, 0);
+	}
+	100% {
+		-ms-transform: translate3drgb(0,0,0);
+	}
+}
+
+@-webkit-keyframes cssload-shiftright {
+	0% {
+		-webkit-transform: translate3drgb(0,0,0);
+	}
+	50% {
+		-webkit-transform: translate3d(-24px, -42px, 0);
+	}
+	100% {
+		-webkit-transform: translate3drgb(0,0,0);
+	}
+}
+
+@-moz-keyframes cssload-shiftright {
+	0% {
+		-moz-transform: translate3drgb(0,0,0);
+	}
+	50% {
+		-moz-transform: translate3d(-24px, -42px, 0);
+	}
+	100% {
+		-moz-transform: translate3drgb(0,0,0);
+	}
+}

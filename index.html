@@ -15,6 +15,10 @@
     </a>
   </nav>
   <div class="container-fluid">&nbsp;Currently in development</div>
+  <div id="loadingMessage" class="container-fluid" style="display: none">
+    <div class="col-xs-12 col-sm-6"><load-triforce></load-triforce></div>
+    <div class="col-xs-12 col-sm-6">Using Hyrule's Triforce to fetch data</div>
+  </div>
   <div class="container">
     <ul class="list-group">
       <li style="background-color: red; color: white" class="list-group-item d-flex justify-content-between align-items-center">
@@ -70,7 +74,10 @@
   <script>
     function getATMData() {
       let url = 'https://atm-milano.now.sh/v1/status';
+      document.querySelector('#loadingMessage').style.display = 'block'
+
       fetch(url).then((res) => {
+      document.querySelector('#loadingMessage').style.display = 'none'
         if (res.status === 200) {
           return res.json();
         }
@@ -83,16 +90,17 @@
       }).catch((err) => {
         console.error(err);
         document.querySelector('#errorbody').textContent = JSON.stringify(err);
+        $('#errorModal').modal(options)
       });
     }
   </script>
 
   <!-- error Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Error</h5>
+          <h5 class="modal-title" id="errorModalLabel">Error</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
