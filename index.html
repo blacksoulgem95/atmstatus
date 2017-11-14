@@ -1,46 +1,103 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>ATM Status</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <link rel="stylesheet" href="footer.css">
-  </head>
-  <body>
-    <nav class="navbar navbar-light bg-light">
-      <a class="navbar-brand" href="#">
-        <img src="assets/logo.png" width="auto" height="30" class="d-inline-block align-top" alt="">
-        ATM Status
-      </a>
-    </nav>
-    <div class="container-fluid">
-      <ul class="list-group">
-        <li style="background-color: red" class="list-group-item d-flex justify-content-between align-items-center">
-          M1 - ROSSA
-          <span id="m1-text" class="badge badge-primary badge-pill">NO DATA</span>
-        </li>
-        <li style="background-color: green" class="list-group-item d-flex justify-content-between align-items-center">
-          M2 - VERDE
-          <span id="m2-text" class="badge badge-primary badge-pill">NO DATA</span>
-        </li>
-        <li style="background-color: yellow" class="list-group-item d-flex justify-content-between align-items-center">
-          M3 - GIALLA
-          <span id="m3-text" class="badge badge-primary badge-pill">NO DATA</span>
-        </li>
-        <li style="background-color: #9955bb" class="list-group-item d-flex justify-content-between align-items-center">
-          M5 - LILLA
-          <span id="m5-text" class="badge badge-primary badge-pill">NO DATA</span>
-        </li>
-      </ul>
+
+<head>
+  <title>ATM Status</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="footer.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="assets/logo.png" width="auto" height="30" class="d-inline-block align-top" alt=""> ATM Status
+    </a>
+  </nav>
+  <div class="row">&nbsp;</div>
+  <div class="container">
+    <ul class="list-group">
+      <li style="background-color: red" class="list-group-item d-flex justify-content-between align-items-center">
+        M1 - RHO FIERAMILANO
+        <span id="M1-RHO-text" class="badge badge-primary badge-pill">NO DATA</span>
+      </li>
+      <li style="background-color: red" class="list-group-item d-flex justify-content-between align-items-center">
+        M1 - BISCEGLIE
+        <span id="M1-BISCEGLIE-text" class="badge badge-primary badge-pill">NO DATA</span>
+      </li>
+      <li style="background-color: red" class="list-group-item d-flex justify-content-between align-items-center">
+        M1 - SESTO F.S.
+        <span id="M1-SESTO-text" class="badge badge-primary badge-pill">NO DATA</span>
+      </li>
+      <li style="background-color: green" class="list-group-item d-flex justify-content-between align-items-center">
+        M2 - VERDE
+        <span id="M2-text" class="badge badge-primary badge-pill">NO DATA</span>
+      </li>
+      <li style="background-color: yellow" class="list-group-item d-flex justify-content-between align-items-center">
+        M3 - GIALLA
+        <span id="M3-text" class="badge badge-primary badge-pill">NO DATA</span>
+      </li>
+      <li style="background-color: #9955bb" class="list-group-item d-flex justify-content-between align-items-center">
+        M5 - LILLA
+        <span id="M5-text" class="badge badge-primary badge-pill">NO DATA</span>
+      </li>
+    </ul>
+  </div>
+
+  <footer class="footer">
+    <div class="container-fluid text-center">
+      <span class="text-muted">This website is not sponsored and/or affiliated with ATM Milano. This site was made by
+        <a href="https://github.com/itguy9401">@ITGuy9401</a>. This website does not use any cookie.</span>
     </div>
+  </footer>
 
-    <footer class="footer">
-      <div class="container-fluid text-center">
-        <span class="text-muted">This website is not sponsored and/or affiliated with ATM Milano. This site was made by <a href="https://github.com/itguy9401">@ITGuy9401</a>. This website does not use any cookie.</span>
+  <script>
+    function getATMData() {
+      let url = 'https://atm-milano.now.sh/v1/status';
+      fetch(url).then((res) => {
+        if (res.status === 200) {
+          return res.json();
+        }
+        throw new Error(res.status);
+      }).then((data) => {
+        data.forEach(element => {
+          let direction = element.direction.replace(/\s/g, '')
+          document.querySelector('#' + element.line + '-' + direction + '-text').textContent = element.status;
+        });
+      }).catch((err) => {
+        console.error(err);
+        document.querySelector('#errorbody').textContent = JSON.stringify(err);
+      });
+    }
+  </script>
+
+  <!-- error Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Error</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="errorbody" class="modal-body">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
       </div>
-    </footer>
+    </div>
+  </div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-  </body>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
