@@ -17,7 +17,8 @@
       <img src="assets/logo.png" width="auto" height="30" class="d-inline-block align-top" alt=""> ATM Status
     </a>
   </nav>
-  <div class="container-fluid text-center">&nbsp;Currently in development.<br>This website is not sponsored and/or affiliated with ATM Milano</div>
+  <div class="container-fluid text-center">&nbsp;Currently in development.
+    <br>This website is not sponsored and/or affiliated with ATM Milano</div>
   <div id="loadingMessage" class="container text-center" style="display: none">
     <div class="col-xs-12">
       <load-triforce></load-triforce>
@@ -75,7 +76,8 @@
 
   <footer class="footer">
     <div class="container-fluid text-center">
-      <span class="text-muted">This site was made by <a href="https://github.com/itguy9401">@ITGuy9401</a>. This website does not use any cookie.</span>
+      <span class="text-muted">This site was made by
+        <a href="https://github.com/itguy9401">@ITGuy9401</a>. This website does not use any cookie.</span>
     </div>
   </footer>
 
@@ -93,7 +95,18 @@
       }).then((data) => {
         data.forEach(element => {
           let direction = element.text.replace(/\s/g, '').replace(/\./g, '')
-          document.querySelector('#' + element.line + '-' + direction + '-text').textContent = element.status;
+          let tbtranslated = "stato del servizio: " + element.status;
+          fetch("https://translate.googleapis.com/translate_a/single?client=gtx&sl=it&tl=en&dt=t&q=" +
+              encodeURI(tbtranslated))
+            .then((res) => {
+              if (res.status === 200) {
+                return res.json();
+              }
+              throw new Error(res.status)
+            }).then((json) => {
+              let status = element.status + " /" + json[0][0][0].split(':')[1];
+              document.querySelector('#' + element.line + '-' + direction + '-text').textContent = status;
+            })
         });
       }).catch((err) => {
         console.error(err);
